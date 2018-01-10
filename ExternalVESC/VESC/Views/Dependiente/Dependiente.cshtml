@@ -1,0 +1,368 @@
+﻿@{
+    ViewBag.Title = "Dependiente";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<head>
+    <script src="~/Scripts/Dependiente/Dependiente.js"></script>
+    <link href="~/Content/Dependiente/Dependiente.css" rel="stylesheet" />
+</head>
+
+<div class="header clearfix">
+    <h2 class="text-muted">Dependiente</h2>
+</div>
+<hr />
+<br />
+
+<div ng-app="MyApp" ng-controller="MyController">
+    <div id="divAgregarEmpresa">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" ng-click="TituloAddDependiente()">
+            <i class="fa fa-plus fa-lg" aria-hidden="true"></i> Agregar
+        </button>
+    </div>
+
+    <br />
+
+    <div id="divTablaEmpresa">
+        <table class="table table-striped">
+            <thead style="background-color:black;color:white;">
+                <tr>
+                    <th class="d-none">IdEmpresa</th>
+                    <th class="d-none">IdRazonSocial</th>
+                    <th>RazonSocial</th>
+                    <th>Membresia</th>
+                    <th class="d-none">IdEmpleado</th>
+                    <th class="d-none">IdDependiente</th>
+                    <th># Empleado</th>
+                    <th>Nombre</th>
+                    <th>Apellido Paterno</th>
+                    <th>Apellido Materno</th>
+                    <th>E-mail</th>
+                    <th>Estatus</th>
+                    <th>Editar</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="d in listaDependiente">
+                    <td class="d-none"><input id="idEmpresa" type="hidden" value="{{d.idEmpresa}}" /></td>
+                    <td class="d-none"><input id="idRazonSocial" type="hidden" value="{{d.idRazonSocial}}" /></td>
+                    <td><h4><span id="razonSocial" class="label">{{d.razonSocial}}</span></h4></td>
+                    <td><h4><span id="membresia" class="label">{{d.cusId}}</span></h4></td>
+                    <td class="d-none"><input id="idDependiente" type="hidden" value="{{d.idEmpleado}}" /></td>
+                    <td class="d-none"><input id="idDependiente" type="hidden" value="{{d.idEmpleadoPadre}}" /></td>
+                    <td><h4><span id="numEmpleado" class="label">{{d.numEmpleado}}</span></h4></td>
+                    <td><h4><span id="nombre" class="label">{{d.nombre}}</span></h4></td>
+                    <td><h4><span id="apellidoP" class="label">{{d.apellidoP}}</span></h4></td>
+                    <td><h4><span id="apellidoM" class="label">{{d.apellidoM}}</span></h4></td>
+                    <td><h4><span id="email" class="label">{{d.email}}</span></h4></td>
+                    <td><input type="checkbox" class="custom-checkbox" id="estatus" ng-model="d.estatus" /></td>
+                    <td>
+                        <button id="editTabla" class="btn btn-primary" data-toggle="modal" data-target="#myModal" ng-click="TituloEditDependiente(d)">
+                            <i class="fa fa-edit fa-lg" aria-hidden="true"></i>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <br />
+
+    <div class="form-group row">
+        <div class="col-md-6 div-centrar">
+            <button id="saveTotal" type="button" class="btn btn-primary">
+                <i class="fa fa-save fa-lg" aria-hidden="true"></i> Guardar
+            </button>
+        </div>
+        <div class="col-md-6 div-centrar">
+            <button id="cancelarTotal" type="button" class="btn btn-secondary" data-dismiss="modal">
+                <i class="fa fa-arrow-left fa-lg" aria-hidden="true"></i> Cancelar
+            </button>
+        </div>
+    </div>
+
+    <br />
+
+    @*Diseño del Modal*@
+    <div class="modal fade" id="myModal" tabindex="-1" role="document" data-keyboard="false" data-backdrop="static">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content modal-dependiente">
+                <div class="modal-header">
+                    <h5 id="modalTitle" class="modal-title titulo-modal">{{modalTitle}}</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    @*Formulario Base*@
+                    <form class="form-horizontal" name="formulario" role="form">
+                        <input type="hidden" value="{{dependiente.idEmpresa}}" />
+                        <input type="hidden" value="{{dependiente.idRazonSocial}}" />
+                        <input type="hidden" value="{{dependiente.idEmpleado}}" />
+
+                        <div class="form-group row">
+                            <label class="col-form-label col-sm-2" for="membresia">Membresia:</label>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control input-max" id="membresia" name="membresia" maxlength="45" ng-model="dependiente.cusId" placeholder="Membresia">
+                                <div ng-if="formulario.cusId.$dirty && formulario.cusId.$error.required" class="alert alert-danger">
+                                    * Campo Obligatorio
+                                </div>
+                                <div ng-if="formulario.cusId.$dirty && formulario.cusId.$dirty.minlength" class="alert alert-danger">
+                                    * Debe agregar mas de 2 caracteres
+                                </div>
+                            </div>
+                            <label class="col-form-label col-sm-2" for="razonSocial">ID/# Empleado:</label>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control input-max" id="numEmpleado" name="numEmpleado" ng-minlength="3" maxlength="45" required ng-model="dependiente.numEmpleado" placeholder="ID/# Empleado">
+                                <div ng-if="formulario.numEmpleado.$dirty && formulario.numEmpleado.$error.required" class="alert alert-danger" style="width:200px">
+                                    * Campo Obligatorio
+                                </div>
+                                <div ng-if="formulario.numEmpleado.$dirty && formulario.numEmpleado.$error.minlength" class="alert alert-danger" style="width:200px">
+                                    * Debe agregar mas de 2 caracteres
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-form-label col-sm-2" for="nombre">Nombre/s:</label>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control input-max" name="nombre" id="nombre" ng-minlength="3" maxlength="45" required ng-model="dependiente.nombre" placeholder="Nombre/s">
+                                <div ng-if="formulario.nombre.$dirty && formulario.nombre.$error.required" class="alert alert-danger">
+                                    * Campo Obligatorio
+                                </div>
+                                <div ng-if="formulario.nombre.$dirty && formulario.nombre.$error.minlength" class="alert alert-danger">
+                                    * Debe agregar mas de 2 caracteres
+                                </div>
+                            </div>
+                            <label class="col-form-label col-sm-2" for="apellidoP">Apellido Paterno:</label>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control input-max" name="apellidoP" id="apellidoP" ng-minlength="3" maxlength="45" required ng-model="dependiente.apellidoP" placeholder="Apellido Paterno">
+                                <div ng-if="formulario.apellidoP.$dirty && formulario.apellidoP.$error.required" class="alert alert-danger">
+                                    * Campo Obligatorio
+                                </div>
+                                <div ng-if="formulario.apellidoP.$dirty && formulario.apellidoP.$error.minlength" class="alert alert-danger">
+                                    * Debe agregar mas de 2 caracteres
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-form-label col-sm-2" for="apellidoM">Apellido Materno:</label>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control input-max" name="apellidoM" id="apellidoM" ng-minlength="3" maxlength="45" required ng-model="dependiente.apellidoM" placeholder="Apellido Materno">
+                                <div ng-if="formulario.apellidoM.$dirty && formulario.apellidoM.$error.required" class="alert alert-danger">
+                                    * Campo Obligatorio
+                                </div>
+                                <div ng-if="formulario.apellidoM.$dirty && formulario.apellidoM.$error.minlength" class="alert alert-danger">
+                                    * Debe agregar mas de 2 caracteres
+                                </div>
+                            </div>
+                            <label class="col-form-label col-sm-2" for="fechaNacimiento">Fecha Nacimiento:</label>
+                            <div class="col-sm-4">
+                                <input type="date" class="form-control input-max" name="fechaNacimiento" id="fechaNacimiento" ng-minlength="3" maxlength="45" required ng-model="dependiente.fechaNacimiento" placeholder="Fecha Nacimiento">
+                                <div ng-if="formulario.fechaNacimiento.$dirty && formulario.fechaNacimiento.$error.required" class="alert alert-danger">
+                                    * Campo Obligatorio
+                                </div>
+                                <div ng-if="formulario.fechaNacimiento.$dirty && formulario.fechaNacimiento.$error.minlength" class="alert alert-danger">
+                                    * Debe agregar mas de 2 caracteres
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-form-label col-sm-2" for="rfc">RFC:</label>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control input-max" name="rfc" id="rfc" ng-minlength="3" maxlength="45" required ng-model="dependiente.rfc" placeholder="RFC">
+                                <div ng-if="formulario.rfc.$dirty && formulario.rfc.$error.required" class="alert alert-danger">
+                                    * Campo Obligatorio
+                                </div>
+                                <div ng-if="formulario.rfc.$dirty && formulario.rfc.$error.minlength" class="alert alert-danger">
+                                    * Debe agregar mas de 2 caracteres
+                                </div>
+                            </div>
+                            <label class="col-form-label col-sm-2" for="curp">CURP:</label>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control input-max" name="curp" id="curp" ng-minlength="3" maxlength="45" required ng-model="dependiente.curp" placeholder="CURP">
+                                <div ng-if="formulario.curp.$dirty && formulario.curp.$error.required" class="alert alert-danger">
+                                    * Campo Obligatorio
+                                </div>
+                                <div ng-if="formulario.curp.$dirty && formulario.curp.$error.minlength" class="alert alert-danger">
+                                    * Debe agregar mas de 2 caracteres
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-form-label col-sm-2" for="genero">Genero:</label>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control input-max" name="genero" id="genero" ng-minlength="3" maxlength="45" required ng-model="dependiente.genero" placeholder="Genero">
+                                <div ng-if="formulario.genero.$dirty && formulario.genero.$error.required" class="alert alert-danger">
+                                    * Campo Obligatorio
+                                </div>
+                                <div ng-if="formulario.genero.$dirty && formulario.genero.$error.minlength" class="alert alert-danger">
+                                    * Debe agregar mas de 2 caracteres
+                                </div>
+                            </div>
+                            <label class="col-form-label col-sm-2" for="email">E-mail:</label>
+                            <div class="col-sm-4">
+                                <input type="email" class="form-control input-max" name="email" id="email" ng-minlength="3" maxlength="45" required ng-model="dependiente.email" placeholder="E-mail">
+                                <div ng-if="formulario.email.$dirty && formulario.email.$error.required" class="alert alert-danger">
+                                    * Campo Obligatorio
+                                </div>
+                                <div ng-if="formulario.email.$dirty && formulario.email.$error.minlength" class="alert alert-danger">
+                                    * Debe agregar mas de 2 caracteres
+                                </div>
+                                <div ng-if="formulario.email.$dirty && formulario.email.$error.email" class="alert alert-danger">
+                                    * Debe agregar un email valido
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-form-label col-sm-2" for="domicilio">Domicilio:</label>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control input-max" name="calle" id="calle" ng-minlength="3" maxlength="45" required ng-model="dependiente.calle" placeholder="Calle">
+                                <div ng-if="formulario.calle.$dirty && formulario.calle.$error.required" class="alert alert-danger">
+                                    * Campo Obligatorio
+                                </div>
+                                <div ng-if="formulario.calle.$dirty && formulario.calle.$error.minlength" class="alert alert-danger">
+                                    * Debe agregar mas de 2 caracteres
+                                </div>
+                            </div>
+                            <label class="col-form-label col-sm-1" for="domicilio"></label>
+                            <div class="col-sm-4">
+                                <input type="number" class="form-control input-max" name="numExterior" id="numExterior" ng-minlength="1" maxlength="45" required ng-model="dependiente.numExterior" placeholder="Numero Exterior">
+                                <div ng-if="formulario.numExterior.$dirty && formulario.numExterior.$error.required" class="alert alert-danger">
+                                    * Campo Obligatorio
+                                </div>
+                                @*<div ng-if="formulario.numero.$dirty && formulario.numero.$error.minlength" class="alert alert-danger">
+                                        * Debe agregar mas de 2 caracteres
+                                    </div>*@
+                                <div ng-if="formulario.numExterior.$dirty && formulario.numExterior.$error.number" class="alert alert-danger">
+                                    * Debe agregar un numero valido
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-form-label col-sm-2" for="domicilio"></label>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control input-max" name="colonia" id="colonia" ng-minlength="3" maxlength="45" required ng-model="dependiente.colonia" placeholder="Colonia">
+                                <div ng-if="formulario.colonia.$dirty && formulario.colonia.$error.required" class="alert alert-danger">
+                                    * Campo Obligatorio
+                                </div>
+                                <div ng-if="formulario.colonia.$dirty && formulario.colonia.$error.minlength" class="alert alert-danger">
+                                    * Debe agregar mas de 2 caracteres
+                                </div>
+                            </div>
+                            <label class="col-form-label col-sm-1" for="domicilio"></label>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control input-max" name="municipioDelegacion" id="municipioDelegacion" ng-minlength="3" maxlength="45" required ng-model="dependiente.municipioDelegacion" placeholder="Municipio/Delegacion">
+                                <div ng-if="formulario.municipioDelegacion.$dirty && formulario.municipioDelegacion.$error.required" class="alert alert-danger">
+                                    * Campo Obligatorio
+                                </div>
+                                <div ng-if="formulario.municipioDelegacion.$dirty && formulario.municipioDelegacion.$error.minlength" class="alert alert-danger">
+                                    * Debe agregar mas de 2 caracteres
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-form-label col-sm-2" for="domicilio"></label>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control input-max" name="estado" id="estado" ng-minlength="3" maxlength="45" required ng-model="dependiente.estado" placeholder="Estado">
+                                <div ng-if="formulario.estado.$dirty && formulario.estado.$error.required" class="alert alert-danger">
+                                    * Campo Obligatorio
+                                </div>
+                                <div ng-if="formulario.estado.$dirty && formulario.estado.$error.minlength" class="alert alert-danger">
+                                    * Debe agregar mas de 2 caracteres
+                                </div>
+                            </div>
+                            <label class="col-form-label col-sm-1" for="domicilio"></label>
+                            <div class="col-sm-4">
+                                <input type="number" class="form-control input-max" name="cp" id="cp" ng-minlength="3" maxlength="45" required ng-model="dependiente.cp" placeholder="C.P.">
+                                <div ng-if="formulario.cp.$dirty && formulario.cp.$error.required" class="alert alert-danger">
+                                    * Campo Obligatorio
+                                </div>
+                                <div ng-if="formulario.cp.$dirty && formulario.cp.$error.minlength" class="alert alert-danger">
+                                    * Debe agregar mas de 2 caracteres
+                                </div>
+                                <div ng-if="formulario.cp.$dirty && formulario.cp.$error.number" class="alert alert-danger">
+                                    * Debe agregar un C.P. valido
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-form-label col-sm-2" for="telefono">Telefono:</label>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control input-max" name="telefono" id="telefono" ng-minlength="3" maxlength="45" required ng-model="dependiente.telefono" placeholder="Telefono">
+                                <div ng-if="formulario.telefono.$dirty && formulario.telefono.$error.required" class="alert alert-danger">
+                                    * Campo Obligatorio
+                                </div>
+                                <div ng-if="formulario.telefono.$dirty && formulario.telefono.$error.minlength" class="alert alert-danger">
+                                    * Debe agregar mas de 2 caracteres
+                                </div>
+                            </div>
+                            <label class="col-form-label col-sm-2" for="telefono2">Telefono 2:</label>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control input-max" name="telefono2" id="telefono2" ng-minlength="3" maxlength="45" ng-model="dependiente.telefono2" placeholder="Telefono 2">
+                                <div ng-if="formulario.telefono2.$dirty && formulario.telefono2.$error.minlength" class="alert alert-danger">
+                                    * Debe agregar mas de 2 caracteres
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-form-label col-sm-2" for="estatus">Estatus:</label>
+                            <div class="col-sm-2">
+                                <input type="checkbox" class="form-control custom-checkbox is-valid" name="estatus" id="estatus" ng-model="dependiente.estatus" />
+                                <div ng-if="formulario.estatus.$error.required" class="alert alert-danger">
+                                    * Campo Obligatorio
+                                </div>
+                                <div ng-if="formulario.estatus.$error.minlength" class="alert alert-danger">
+                                    * Debe agregar mas de 2 caracteres
+                                </div>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+                <div class="modal-footer div-centrar">
+                    @*Div para editar empresas*@
+                    <div id="divEdit" ng-show=mostrarBotonesEdit>
+                        <div class="form-group row">
+                            <div class="col-md-6 div-centrar">
+                                <button ng-disabled="formulario.$invalid" id="saveModal" type="button" class="btn btn-primary" ng-click="EditEmpleado(dependiente)">
+                                    <i class="fa fa-save fa-lg" aria-hidden="true"></i> Guardar
+                                </button>
+                            </div>
+                            <div class="col-md-6 div-centrar">
+                                <button id="cancelarModal" type="button" class="btn btn-secondary" data-dismiss="modal">
+                                    <i class="fa fa-arrow-left fa-lg" aria-hidden="true"></i> Cancelar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    @*Div para guardar empresas*@
+                    <div id="divSave" ng-show=mostrarBotonesAdd>
+                        <div class="form-group row">
+                            <div class="col-md-6 div-centrar">
+                                <button ng-disabled="formulario.$invalid" id="saveModal" type="button" class="btn btn-primary" ng-click="AddEmpleado(dependiente)">
+                                    <i class="fa fa-save fa-lg" aria-hidden="true"></i> Guardar
+                                </button>
+                            </div>
+                            <div class="col-md-6 div-centrar">
+                                <button id="cancelarModal" type="button" class="btn btn-secondary" data-dismiss="modal">
+                                    <i class="fa fa-arrow-left fa-lg" aria-hidden="true"></i> Cancelar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+

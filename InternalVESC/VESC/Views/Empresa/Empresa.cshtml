@@ -1,0 +1,188 @@
+﻿@{
+    ViewBag.Title = "Empresa";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<head>
+    @*<script type="text/javascript" src="~/Scripts/angular.min.js"></script>*@
+    <script type="text/javascript" src="~/Scripts/Empresa/Empresa.js"></script>
+    @*<script src="~/Scripts/jquery-3.2.1.min.js"></script>*@
+    <link href="~/Content/Empresa/Empresa.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery.validate.js"></script>
+</head>
+
+<div class="header clearfix">
+    <h2 class="text-muted">Empresa</h2>
+</div>
+<hr />
+<br />
+
+<div ng-app="MyApp" ng-controller="MyController">
+
+    <div id="divAgregarEmpresa">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" ng-click="TituloAddEmpresa()"> 
+            <i class="fa fa-plus fa-lg" aria-hidden="true"></i> Agregar
+        </button>
+    </div>
+
+    <br />
+
+    <div id="divTablaEmpresa" >
+        <table class="table table-striped">
+            <thead style="background-color:black;color:white;">
+                <tr>
+                    <th class="d-none">IdEmpresa</th>
+                    <th>Empresa</th>
+                    <th>Estatus</th>
+                    <th>Editar</th>
+                    <th>Accesos</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="d in listaEmpresa">
+                    <td class="d-none"><input type="hidden" value="{{d.idEmpresa}}" /></td>
+                    <td><h4><span id="empresTabla" class="label">{{d.empresa1}}</span></h4></td>
+                    <td><input type="checkbox" class="custom-checkbox" id="estatusTabla" ng-model="d.estatus"/></td>
+                    <td>
+                        <button id="editTabla" class="btn btn-primary" data-toggle="modal" data-target="#myModal" ng-click="TituloEditEmpresa(d)">
+                            <i class="fa fa-edit fa-lg" aria-hidden="true"></i>
+                        </button>
+                    </td>
+                    <td>
+                        <button id="accesosTabla" class="btn btn-primary" ng-click="">
+                            <i class="fa fa-users fa-lg" aria-hidden="true"></i>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <br />
+
+    <div class="form-group row">
+        <div class="col-md-6 div-centrar">
+            <button id="saveTotal" type="button" class="btn btn-primary">
+                <i class="fa fa-save fa-lg" aria-hidden="true"></i> Guardar
+            </button>
+        </div>
+        <div class="col-md-6 div-centrar">
+            <button id="cancelarTotal" type="button" class="btn btn-secondary" data-dismiss="modal">
+                <i class="fa fa-arrow-left fa-lg" aria-hidden="true"></i> Cancelar
+            </button>
+        </div>
+    </div>
+    
+    <br />
+
+    @*Diseño del Modal*@
+    <div class="modal fade" id="myModal" tabindex="-1" role="document" data-keyboard="false" data-backdrop="static">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 id="modalTitle" class="modal-title titulo-modal">{{modalTitle}}</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    @*Formulario Base*@
+                    <form class="container form-horizontal" id="formularioEmpresa" novalidate>
+                        <input type="hidden" value="{{empresa.idEmpresa}}" />
+
+                        <div class="form-group row">
+                            <label class="col-form-label col-sm-3" for="empresa">Nombre Empresa:</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control input-max" id="empresa" required ng-model="empresa.empresa1" placeholder="Nombre de la Empresa">
+                            </div>                           
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-form-label col-sm-3" for="contacto">Contacto Empresa:</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control input-max" id="contactoNombre" required ng-model="empresa.nombreContacto" placeholder="Nombre">
+                            </div>
+                            <label class="col-form-label col-sm-3" for="contacto"></label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control input-max" id="contactoApellidoP" required ng-model="empresa.apellidoPContacto" placeholder="Apellido Paterno">
+                            </div>
+                            <label class="col-form-label col-sm-3" for="contacto"></label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control input-max" id="contactoApellidoM" required ng-model="empresa.apellidoMContacto" placeholder="Apellido Materno">                               
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-form-label col-sm-3" for="puesto">Puesto Contacto:</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control input-max" id="puesto" required ng-model="empresa.puestoContacto" placeholder="Puesto del Contacto">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-form-label col-sm-3" for="telefono">Teléfono:</label>
+                            <div class="col-sm-8">
+                                <input type="tel" class="form-control" id="telefono" required ng-model="empresa.telefonoContacto" placeholder="Teléfono">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-form-label col-sm-3" for="telefono2">Teléfono 2:</label>
+                            <div class="col-sm-8">
+                                <input type="tel" class="form-control" id="telefono2" ng-model="empresa.telefonoContacto2" placeholder="Teléfono 2">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-form-label col-sm-3" for="email">Email:</label>
+                            <div class="col-sm-8">
+                                <input type="email" class="form-control" id="email" required ng-model="empresa.correoContacto" placeholder="Email">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-form-label col-sm-3" for="estatus">Estatus:</label>
+                            <div class="col-sm-8">
+                                <input type="checkbox" class="form-control custom-checkbox is-valid" id="estatus" ng-model="empresa.estatus" />
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+                <div class="modal-footer div-centrar">
+                    @*Div para editar empresas*@
+                    <div id="divEdit" ng-show=mostrarBotonesEdit>
+                        <div class="form-group row">
+                            <div class="col-md-6 div-centrar">
+                                <button id="saveModal" type="button" class="btn btn-primary" ng-click="EditEmpresa(empresa)">
+                                    <i class="fa fa-save fa-lg" aria-hidden="true"></i> Guardar
+                                </button>
+                            </div>
+                            <div class="col-md-6 div-centrar">
+                                <button id="cancelarModal" type="button" class="btn btn-secondary" data-dismiss="modal">
+                                    <i class="fa fa-arrow-left fa-lg" aria-hidden="true"></i> Cancelar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    @*Div para guardar empresas*@
+                    <div id="divSave" ng-show=mostrarBotonesAdd>
+                        <div class="form-group row">
+                            <div class="col-md-6 div-centrar">
+                                <button id="saveModal" type="button" class="btn btn-primary" ng-click="AddEmpresa(empresa)">
+                                    <i class="fa fa-save fa-lg" aria-hidden="true"></i> Guardar
+                                </button>
+                            </div>
+                            <div class="col-md-6 div-centrar">
+                                <button id="cancelarModal" type="button" class="btn btn-secondary" data-dismiss="modal">
+                                    <i class="fa fa-arrow-left fa-lg" aria-hidden="true"></i> Cancelar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>

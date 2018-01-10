@@ -1,0 +1,1 @@
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="VESCServices.Services.VescService" CodeBehind="VescService.svc.cs" %>

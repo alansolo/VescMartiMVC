@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/VESCServices.ENT.Request.Account" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/VESCServices.ENT.Request.Account" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:4063/VescService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/VESCServices.ENT.Common" />
+  <xs:complexType name="LoginRequestDTO">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q1="http://schemas.datacontract.org/2004/07/VESCServices.ENT.Common" base="q1:RequestBaseDTO">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="contrasena" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="usuario" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="LoginRequestDTO" nillable="true" type="tns:LoginRequestDTO" />
+  <xs:complexType name="LogoutRequestDTO">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q2="http://schemas.datacontract.org/2004/07/VESCServices.ENT.Common" base="q2:RequestBaseDTO">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="LogoutRequestDTO" nillable="true" type="tns:LogoutRequestDTO" />
+  <xs:complexType name="SendPasswordRequestDTO">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q3="http://schemas.datacontract.org/2004/07/VESCServices.ENT.Common" base="q3:RequestBaseDTO">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="SendPasswordRequestDTO" nillable="true" type="tns:SendPasswordRequestDTO" />
+  <xs:complexType name="ChangePasswordRequestDTO">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q4="http://schemas.datacontract.org/2004/07/VESCServices.ENT.Common" base="q4:RequestBaseDTO">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ChangePasswordRequestDTO" nillable="true" type="tns:ChangePasswordRequestDTO" />
+</xs:schema>

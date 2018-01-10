@@ -1,0 +1,37 @@
+﻿body {
+}
+
+.modal-lg 
+{
+    width: 80% !important;
+}
+
+.divText
+{
+width: 100%;
+}
+
+.input-max
+{
+    max-width:100% !important;
+    width:100% !important;
+}
+
+.custom-checkbox
+{
+    height: 20px;
+    width: 20px;
+    border: 2px solid #cdc9ca;
+}
+
+.titulo-modal 
+{
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.div-centrar
+{
+    display: flex;
+    justify-content: center;
+}

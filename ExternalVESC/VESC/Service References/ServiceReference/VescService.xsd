@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/VESCServices.ENT.Common" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/VESCServices.ENT.Common" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:4063/VescService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:complexType name="RequestBaseDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ip" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="tokenSesion" type="ser:guid" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="RequestBaseDTO" nillable="true" type="tns:RequestBaseDTO" />
+  <xs:complexType name="ResponseBaseDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ErrorList" nillable="true" type="tns:ArrayOfErrorDTO" />
+      <xs:element minOccurs="0" name="Success" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ResponseBaseDTO" nillable="true" type="tns:ResponseBaseDTO" />
+  <xs:complexType name="ArrayOfErrorDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ErrorDTO" nillable="true" type="tns:ErrorDTO" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfErrorDTO" nillable="true" type="tns:ArrayOfErrorDTO" />
+  <xs:complexType name="ErrorDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Code" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Descripction" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ErrorDTO" nillable="true" type="tns:ErrorDTO" />
+</xs:schema>

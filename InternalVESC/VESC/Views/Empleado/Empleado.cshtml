@@ -1,0 +1,250 @@
+﻿@{
+    ViewBag.Title = "Empleado";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<head>
+    <script src="~/Scripts/Empleado/Empleado.js"></script>
+    <link href="~/Content/Empleado/Empleado.css" rel="stylesheet" />
+</head>
+
+<div class="header clearfix">
+    <h2 class="text-muted">Empleado</h2>
+</div>
+<hr />
+<br />
+
+<div ng-app="MyApp" ng-controller="MyController">
+    <div id="divAgregarEmpresa">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" ng-click="TituloAddEmpleado()">
+            <i class="fa fa-plus fa-lg" aria-hidden="true"></i> Agregar
+        </button>
+    </div>
+
+    <br />
+
+    <div id="divTablaEmpresa">
+        <table class="table table-striped">
+            <thead style="background-color:black;color:white;">
+                <tr>
+                    <th class="d-none">IdEmpresa</th>
+                    <th class="d-none">IdRazonSocial</th>
+                    <th>RazonSocial</th>
+                    <th>Membresia</th>
+                    <th class="d-none">IdEmpleado</th>
+                    <th># Empleado</th>
+                    <th>Nombre</th>
+                    <th>Apellido Paterno</th>
+                    <th>Apellido Materno</th>
+                    <th>E-mail</th>
+                    <th>Estatus</th>
+                    <th>Editar</th>
+                    <th>Dependientes</th>
+                    <th>Ver Resumen</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="d in listaEmpleado">
+                    <td class="d-none"><input id="idEmpresa" type="hidden" value="{{d.idEmpresa}}" /></td>
+                    <td class="d-none"><input id="idRazonSocial" type="hidden" value="{{d.idRazonSocial}}" /></td>
+                    <td><h4><span id="razonSocial" class="label">{{d.razonSocial}}</span></h4></td>
+                    <td><h4><span id="membresia" class="label">{{d.membresia}}</span></h4></td>
+                    <td class="d-none"><input id="idEmpleado" type="hidden" value="{{d.idEmpleado}}" /></td>
+                    <td><h4><span id="empleado" class="label">{{d.empleado}}</span></h4></td>
+                    <td><h4><span id="nombre" class="label">{{d.nombre}}</span></h4></td>
+                    <td><h4><span id="apellidoP" class="label">{{d.apellidoP}}</span></h4></td>
+                    <td><h4><span id="apellidoM" class="label">{{d.apellidoM}}</span></h4></td>
+                    <td><h4><span id="email" class="label">{{d.email}}</span></h4></td>
+                    <td><input type="checkbox" class="custom-checkbox" id="estatus" ng-model="d.estatus" /></td>
+                    <td>
+                        <button id="editTabla" class="btn btn-primary" data-toggle="modal" data-target="#myModal" ng-click="TituloEditEmpleado(d)">
+                            <i class="fa fa-edit fa-lg" aria-hidden="true"></i>
+                        </button>
+                    </td>
+                    <td>
+                        <button id="editTabla" class="btn btn-primary" data-toggle="modal" data-target="#myModal" ng-click="TituloDependientesEmpleado(d)">
+                            <i class="fa fa-users fa-lg" aria-hidden="true"></i>
+                        </button>
+                    </td>
+                    <td>
+                        <button id="editTabla" class="btn btn-primary" data-toggle="modal" data-target="#myModal" ng-click="TituloResumenEmpleado(d)">
+                            <i class="fa fa-table fa-lg" aria-hidden="true"></i>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <br />
+
+    <div class="form-group row">
+        <div class="col-md-6 div-centrar">
+            <button id="saveTotal" type="button" class="btn btn-primary">
+                <i class="fa fa-save fa-lg" aria-hidden="true"></i> Guardar
+            </button>
+        </div>
+        <div class="col-md-6 div-centrar">
+            <button id="cancelarTotal" type="button" class="btn btn-secondary" data-dismiss="modal">
+                <i class="fa fa-arrow-left fa-lg" aria-hidden="true"></i> Cancelar
+            </button>
+        </div>
+    </div>
+
+    <br />
+
+    @*Diseño del Modal*@
+    <div class="modal fade" id="myModal" tabindex="-1" role="document" data-keyboard="false" data-backdrop="static">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 id="modalTitle" class="modal-title titulo-modal">{{modalTitle}}</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    @*Formulario Base*@
+                    <form class="form-horizontal" name="formulario" role="form">
+                        <input type="hidden" value="{{empleado.idEmpresa}}" />
+                        <input type="hidden" value="{{empleado.idRazonSocial}}" />
+
+                        <div class="form-group row">
+                            <label class="col-form-label col-sm-3" for="razonSocial">Razon Social:</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control input-max" id="razonSocial" name="razonSocial" ng-minlength="3" maxlength="45" required ng-model="empleado.razonSocial" placeholder="Razon Social">
+                                <div ng-if="formulario.razonSocial.$error.required" class="alert alert-danger">
+                                    * Campo Obligatorio
+                                </div>
+                                <div ng-if="formulario.razonSocial.$error.minlength" class="alert alert-danger">
+                                    * Debe agregar mas de 2 caracteres
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-form-label col-sm-3" for="membresia">Membresia:</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control input-max" id="membresia" name="membresia" ng-minlength="3" maxlength="45" required ng-model="empleado.membresia" placeholder="Membresia">
+                                <div ng-if="formulario.membresia.$error.required" class="alert alert-danger">
+                                    * Campo Obligatorio
+                                </div>
+                                <div ng-if="formulario.membresia.$error.minlength" class="alert alert-danger">
+                                    * Debe agregar mas de 2 caracteres
+                                </div>
+                            </div>
+                        </div>
+
+                        <input type="hidden" value="{{empleado.idEmpleado}}" />
+
+                        <div class="form-group row">
+                            <label class="col-form-label col-sm-3" for="empleado"># Empleado:</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control input-max" id="nuEmpleado" name="nuEmpleado" ng-minlength="3" maxlength="45" required ng-model="empleado.nuEmpleado" placeholder="# Empleado">
+                                <div ng-if="formulario.nuEmpleado.$error.required" class="alert alert-danger">
+                                    * Campo Obligatorio
+                                </div>
+                                <div ng-if="formulario.nuEmpleado.$error.minlength" class="alert alert-danger">
+                                    * Debe agregar mas de 2 caracteres
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-form-label col-sm-3" for="nombre">Nombre:</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control input-max" id="nombre" name="nombre" ng-minlength="3" maxlength="45" required ng-model="empleado.nombre" placeholder="Nombre">
+                                <div ng-if="formulario.nombre.$error.required" class="alert alert-danger">
+                                    * Campo Obligatorio
+                                </div>
+                                <div ng-if="formulario.nombre.$error.minlength" class="alert alert-danger">
+                                    * Debe agregar mas de 2 caracteres
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-form-label col-sm-3" for="apellidoP">Apellido Paterno:</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control input-max" id="apellidoP" name="apellidoP" ng-minlength="3" maxlength="45" required ng-model="empleado.apellidoP" placeholder="Apellido Paterno">
+                                <div ng-if="formulario.apellidoP.$error.required" class="alert alert-danger">
+                                    * Campo Obligatorio
+                                </div>
+                                <div ng-if="formulario.apellidoP.$error.minlength" class="alert alert-danger">
+                                    * Debe agregar mas de 2 caracteres
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-form-label col-sm-3" for="apellidoM">Apellido Materno:</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control input-max" id="apellidoM" name="apellidoM" ng-minlength="3" maxlength="45" required ng-model="empleado.apellidoM" placeholder="Apellido Materno">
+                                <div ng-if="formulario.apellidoM.$error.required" class="alert alert-danger">
+                                    * Campo Obligatorio
+                                </div>
+                                <div ng-if="formulario.apellidoM.$error.minlength" class="alert alert-danger">
+                                    * Debe agregar mas de 2 caracteres
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-form-label col-sm-3" for="email">E-mail:</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control input-max" id="email" name="email" ng-minlength="3" maxlength="45" required ng-model="empleado.email" placeholder="E-mail">
+                                <div ng-if="formulario.email.$error.required" class="alert alert-danger">
+                                    * Campo Obligatorio
+                                </div>
+                                <div ng-if="formulario.email.$error.minlength" class="alert alert-danger">
+                                    * Debe agregar mas de 2 caracteres
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-form-label col-sm-3" for="estatus">Estatus:</label>
+                            <div class="col-sm-8">
+                                <input type="checkbox" class="form-control custom-checkbox is-valid" id="estatus" ng-model="empleado.estatus" />
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+                <div class="modal-footer div-centrar">
+                    @*Div para editar empresas*@
+                    <div id="divEdit" ng-show=mostrarBotonesEdit>
+                        <div class="form-group row">
+                            <div class="col-md-6 div-centrar">
+                                <button ng-disabled="formulario.$invalid" id="saveModal" type="button" class="btn btn-primary" ng-click="EditEmpleado(empleado)">
+                                    <i class="fa fa-save fa-lg" aria-hidden="true"></i> Guardar
+                                </button>
+                            </div>
+                            <div class="col-md-6 div-centrar">
+                                <button id="cancelarModal" type="button" class="btn btn-secondary" data-dismiss="modal">
+                                    <i class="fa fa-arrow-left fa-lg" aria-hidden="true"></i> Cancelar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    @*Div para guardar empresas*@
+                    <div id="divSave" ng-show=mostrarBotonesAdd>
+                        <div class="form-group row">
+                            <div class="col-md-6 div-centrar">
+                                <button ng-disabled="formulario.$invalid" id="saveModal" type="button" class="btn btn-primary" ng-click="AddEmpleado(empleado)">
+                                    <i class="fa fa-save fa-lg" aria-hidden="true"></i> Guardar
+                                </button>
+                            </div>
+                            <div class="col-md-6 div-centrar">
+                                <button id="cancelarModal" type="button" class="btn btn-secondary" data-dismiss="modal">
+                                    <i class="fa fa-arrow-left fa-lg" aria-hidden="true"></i> Cancelar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

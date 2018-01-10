@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:4063/VescService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/VESCServices.ENT.Request.Account" />
+  <xs:import schemaLocation="http://localhost:4063/VescService.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/VESCServices.ENT.Response.Account" />
+  <xs:import schemaLocation="http://localhost:4063/VescService.svc?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/VESCServices.ENT.Request.Empleado" />
+  <xs:import schemaLocation="http://localhost:4063/VescService.svc?xsd=xsd7" namespace="http://schemas.datacontract.org/2004/07/VESCServices.ENT.Response.Empleado" />
+  <xs:import schemaLocation="http://localhost:4063/VescService.svc?xsd=xsd8" namespace="http://schemas.datacontract.org/2004/07/VESCServices.ENT.Request.Padron" />
+  <xs:import schemaLocation="http://localhost:4063/VescService.svc?xsd=xsd9" namespace="http://schemas.datacontract.org/2004/07/VESCServices.ENT.Response.Padron" />
+  <xs:import schemaLocation="http://localhost:4063/VescService.svc?xsd=xsd10" namespace="http://schemas.datacontract.org/2004/07/VESCServices.ENT.Request.RazonSocial" />
+  <xs:element name="Login">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/VESCServices.ENT.Request.Account" minOccurs="0" name="request" nillable="true" type="q1:LoginRequestDTO" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LoginResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/VESCServices.ENT.Response.Account" minOccurs="0" name="LoginResult" nillable="true" type="q2:LoginResponseDTO" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Logout">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/VESCServices.ENT.Request.Account" minOccurs="0" name="request" nillable="true" type="q3:LogoutRequestDTO" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LogoutResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/VESCServices.ENT.Response.Account" minOccurs="0" name="LogoutResult" nillable="true" type="q4:LogoutResponseDTO" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SendPassword">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/VESCServices.ENT.Request.Account" minOccurs="0" name="request" nillable="true" type="q5:SendPasswordRequestDTO" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SendPasswordResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/VESCServices.ENT.Response.Account" minOccurs="0" name="SendPasswordResult" nillable="true" type="q6:SendPasswordResponseDTO" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ChangePassword">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/VESCServices.ENT.Request.Account" minOccurs="0" name="request" nillable="true" type="q7:ChangePasswordRequestDTO" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ChangePasswordResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/VESCServices.ENT.Response.Account" minOccurs="0" name="ChangePasswordResult" nillable="true" type="q8:ChangePasswordResponseDTO" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AltaEmpleado">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/VESCServices.ENT.Request.Empleado" minOccurs="0" name="request" nillable="true" type="q9:AltaEmpleadoRequestDTO" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AltaEmpleadoResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/VESCServices.ENT.Response.Empleado" minOccurs="0" name="AltaEmpleadoResult" nillable="true" type="q10:AltaEmpleadoResponseDTO" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="EditEmpleado">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/VESCServices.ENT.Request.Empleado" minOccurs="0" name="request" nillable="true" type="q11:EditEmpleadoRequestDTO" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="EditEmpleadoResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/VESCServices.ENT.Response.Empleado" minOccurs="0" name="EditEmpleadoResult" nillable="true" type="q12:EditEmpleadoResponseDTO" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AltaDependiente">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/VESCServices.ENT.Request.Empleado" minOccurs="0" name="request" nillable="true" type="q13:AltaEmpleadoRequestDTO" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AltaDependienteResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/VESCServices.ENT.Response.Empleado" minOccurs="0" name="AltaDependienteResult" nillable="true" type="q14:AltaEmpleadoResponseDTO" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="BuscarEmpleado">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/VESCServices.ENT.Request.Empleado" minOccurs="0" name="request" nillable="true" type="q15:BuscarEmpleadoRequestDTO" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="BuscarEmpleadoResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/VESCServices.ENT.Response.Empleado" minOccurs="0" name="BuscarEmpleadoResult" nillable="true" type="q16:BuscarEmpleadoResponseDTO" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ConsultaPadron">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q17="http://schemas.datacontract.org/2004/07/VESCServices.ENT.Request.Padron" minOccurs="0" name="request" nillable="true" type="q17:ConsultaPadronRequestDTO" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ConsultaPadronResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q18="http://schemas.datacontract.org/2004/07/VESCServices.ENT.Response.Padron" minOccurs="0" name="ConsultaPadronResult" nillable="true" type="q18:ConsultaPadronResponseDTO" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetRazonSocial">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q19="http://schemas.datacontract.org/2004/07/VESCServices.ENT.Request.RazonSocial" minOccurs="0" name="request" nillable="true" type="q19:GetRazonSocialRequestDTO" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetRazonSocialResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q20="http://schemas.datacontract.org/2004/07/VESCServices.ENT.Request.RazonSocial" minOccurs="0" name="GetRazonSocialResult" nillable="true" type="q20:GetRazonSocialResponseDTO" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

@@ -1,0 +1,147 @@
+﻿@{
+    ViewBag.Title = "TipoPago";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<head>
+    <script src="~/Scripts/TipoPago/TipoPago.js"></script>
+    <link href="~/Content/TipoPago/TipoPago.css" rel="stylesheet" />
+    <script src="~/Scripts/angular-messages.js"></script>
+</head>
+
+<div class="header clearfix">
+    <h2 class="text-muted">Tipo Pago</h2>
+</div>
+<hr />
+<br />
+
+<div ng-app="MyApp" ng-controller="MyController">
+    <div id="divAgregarEmpresa">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" ng-click="TituloAddTipoPago()">
+            <i class="fa fa-plus fa-lg" aria-hidden="true"></i> Agregar
+        </button>
+    </div>
+
+    <br />
+
+    <div id="divTablaEmpresa">
+        <table class="table table-striped">
+            <thead style="background-color:black;color:white;">
+                <tr>
+                    <th class="d-none">IdPlan</th>
+                    <th>TipoPago</th>
+                    <th>Descripción</th>
+                    <th>Mensualidad</th>
+                    <th>Editar</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="d in listaTipoPago">
+                    <td class="d-none"><input id="idPlan" type="hidden" value="{{d.idTipoPago}}" /></td>
+                    <td><h4><span id="plan" class="label">{{d.formato}}</span></h4></td>
+                    <td><h4><span id="descripcion" class="label">{{d.descripcion}}</span></h4></td>
+                    <td>
+                        <button id="editTabla" class="btn btn-primary" data-toggle="modal" data-target="#myModal" ng-click="TituloEditTipoPago(d)">
+                            <i class="fa fa-edit fa-lg" aria-hidden="true"></i>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <br />
+
+    <div class="form-group row">
+        <div class="col-md-6 div-centrar">
+            <button id="saveTotal" type="button" class="btn btn-primary">
+                <i class="fa fa-save fa-lg" aria-hidden="true"></i> Guardar
+            </button>
+        </div>
+        <div class="col-md-6 div-centrar">
+            <button id="cancelarTotal" type="button" class="btn btn-secondary" data-dismiss="modal">
+                <i class="fa fa-arrow-left fa-lg" aria-hidden="true"></i> Cancelar
+            </button>
+        </div>
+    </div>
+
+    <br />
+
+    @*Diseño del Modal*@
+    <div class="modal fade" id="myModal" tabindex="-1" role="document" data-keyboard="false" data-backdrop="static">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 id="modalTitle" class="modal-title titulo-modal">{{modalTitle}}</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    @*Formulario Base*@
+                    <form class="form-horizontal" name="formulario" role="form">
+                        <input type="hidden" value="{{formato.idTipoPago}}" />
+                        <div class="form-group row">
+                            <label class="col-form-label col-sm-3" for="formato">TipoPago:</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control input-max" ng-class="{'is-invalid': formulario.formato.$invalid}" id="formato" name="formato" ng-minlength="3" maxlength="45" required ng-model="formato.formato" placeholder="TipoPago">
+                                <div ng-if="formulario.formato.$error.required" class="alert alert-danger">
+                                    * Campo Obligatorio
+                                </div>
+                                <div ng-if="formulario.formato.$error.minlength" class="alert alert-danger">
+                                    * Se debe agregar mas de 2 caracteres
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-form-label col-sm-3" for="empresa">Descripción:</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control input-max" ng-class="{'is-invalid': formulario.descripcion.$invalid}" id="descripcion" name="descripcion" ng-minlength="3" maxlength="75" required ng-model="formato.descripcion" placeholder="Descripción del TipoPago">
+                                <div ng-if="formulario.descripcion.$error.required" class="alert alert-danger">
+                                    * Campo Obligatorio
+                                </div>
+                                <div ng-if="formulario.descripcion.$error.minlength" class="alert alert-danger">
+                                    * Debe agregar mas de 2 caracteres
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer div-centrar">
+                    @*Div para editar empresas*@
+                    <div id="divEdit" ng-show=mostrarBotonesEdit>
+                        <div class="form-group row">
+                            <div class="col-md-6 div-centrar">
+                                <button ng-disabled="formulario.$invalid" id="saveModal" type="button" class="btn btn-primary" ng-click="EditTipoPago(formato)">
+                                    <i class="fa fa-save fa-lg" aria-hidden="true"></i> Guardar
+                                </button>
+                            </div>
+                            <div class="col-md-6 div-centrar">
+                                <button id="cancelarModal" type="button" class="btn btn-secondary" data-dismiss="modal">
+                                    <i class="fa fa-arrow-left fa-lg" aria-hidden="true"></i> Cancelar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    @*Div para guardar empresas*@
+                    <div id="divSave" ng-show=mostrarBotonesAdd>
+                        <div class="form-group row">
+                            <div class="col-md-6 div-centrar">
+                                <button ng-disabled="formulario.$invalid" id="saveModal" type="button" class="btn btn-primary" ng-click="AddTipoPago(formato)">
+                                    <i class="fa fa-save fa-lg" aria-hidden="true"></i> Guardar
+                                </button>
+                            </div>
+                            <div class="col-md-6 div-centrar">
+                                <button id="cancelarModal" type="button" class="btn btn-secondary" data-dismiss="modal">
+                                    <i class="fa fa-arrow-left fa-lg" aria-hidden="true"></i> Cancelar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+

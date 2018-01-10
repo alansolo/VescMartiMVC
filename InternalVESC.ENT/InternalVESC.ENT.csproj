@@ -1,0 +1,137 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{4CAFD671-48B5-4031-BFC3-D1C73F60EC69}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>InternalVESC.ENT</RootNamespace>
+    <AssemblyName>InternalVESC.ENT</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Common\ErrorDTO.cs" />
+    <Compile Include="Common\RequestBaseDTO.cs" />
+    <Compile Include="Common\ResponseBaseDTO.cs" />
+    <Compile Include="Entities\BD\CatClub.cs" />
+    <Compile Include="Entities\BD\CategoriaClub.cs" />
+    <Compile Include="Entities\BD\CatFormato.cs" />
+    <Compile Include="Entities\BD\CatModalidadPago.cs" />
+    <Compile Include="Entities\BD\CatNivel.cs" />
+    <Compile Include="Entities\BD\CatPantalla.cs" />
+    <Compile Include="Entities\BD\CatPlan.cs" />
+    <Compile Include="Entities\BD\CatRol.cs" />
+    <Compile Include="Entities\BD\CatTipoPago.cs" />
+    <Compile Include="Entities\BD\Empleado.cs" />
+    <Compile Include="Entities\BD\Empresa.cs" />
+    <Compile Include="Entities\BD\RazonSocial.cs" />
+    <Compile Include="Entities\BD\HistContable.cs" />
+    <Compile Include="Entities\BD\HistMovimientosSIAS.cs" />
+    <Compile Include="Entities\BD\Login.cs" />
+    <Compile Include="Entities\BD\LoginEmpresa.cs" />
+    <Compile Include="Entities\BD\PlanEmpresa.cs" />
+    <Compile Include="Entities\BD\Precios.cs" />
+    <Compile Include="Entities\BD\ProcesoMembresia.cs" />
+    <Compile Include="Entities\BD\RolPantalla.cs" />
+    <Compile Include="Entities\CorreoElectronico\CorreoElectronico.cs" />
+    <Compile Include="Entities\PlanModalidadPago\PlanModalidadPago.cs" />
+    <Compile Include="Entities\UserDTO.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Request\ChangePasswordRequestDTO.cs" />
+    <Compile Include="Request\Club\AddClubRequestDTO.cs" />
+    <Compile Include="Request\Club\EditClubRequestDTO.cs" />
+    <Compile Include="Request\Club\GetClubRequestDTO.cs" />
+    <Compile Include="Request\Empresa\AddEmpresaRequestDTO.cs" />
+    <Compile Include="Request\Empresa\EditEmpresaRequestDTO.cs" />
+    <Compile Include="Request\Empresa\GetEmpresaRequestDTO.cs" />
+    <Compile Include="Request\Formato\AddFormatoRequestDTO.cs" />
+    <Compile Include="Request\Formato\EditFormatoRequestDTO.cs" />
+    <Compile Include="Request\Formato\GetFormatoRequestDTO.cs" />
+    <Compile Include="Request\LoginEmpresa\GetLoginEmpresaRequestDTO.cs" />
+    <Compile Include="Request\LoginRequestDTO.cs" />
+    <Compile Include="Request\ModalidadPago\AddModalidadPagoRequestDTO.cs" />
+    <Compile Include="Request\ModalidadPago\EditModalidadPagoRequestDTO.cs" />
+    <Compile Include="Request\ModalidadPago\GetModalidadPagoRequestDTO.cs" />
+    <Compile Include="Request\Nivel\AddNivelRequestDTO.cs" />
+    <Compile Include="Request\Nivel\EditNivelRequestDTO.cs" />
+    <Compile Include="Request\Nivel\GetNivelRequestDTO.cs" />
+    <Compile Include="Request\Plan\AddPlanRequestDTO.cs" />
+    <Compile Include="Request\Plan\EditPlanRequestDTO.cs" />
+    <Compile Include="Request\Plan\GetPlanRequestDTO.cs" />
+    <Compile Include="Request\RazonSocial\GetRazonSocialRequestDTO.cs" />
+    <Compile Include="Request\SendPasswordRequestDTO.cs" />
+    <Compile Include="Request\TipoPago\AddTipoPagoRequestDTO.cs" />
+    <Compile Include="Request\TipoPago\EditTipoPagoRequestDTO.cs" />
+    <Compile Include="Request\TipoPago\GetTipoPagoRequestDTO.cs" />
+    <Compile Include="Response\ChangePasswordResponseDTO.cs" />
+    <Compile Include="Response\Club\AddClubResponseDTO.cs" />
+    <Compile Include="Response\Club\EditClubResponseDTO.cs" />
+    <Compile Include="Response\Club\GetClubResponseDTO.cs" />
+    <Compile Include="Response\Empresa\AddEmpresaResponseDTO.cs" />
+    <Compile Include="Response\Empresa\EditEmpresaResponseDTO.cs" />
+    <Compile Include="Response\Empresa\GetEmpresaResponseDTO.cs" />
+    <Compile Include="Response\Formato\AddFormatoResponseDTO.cs" />
+    <Compile Include="Response\Formato\EditFormatoResponseDTO.cs" />
+    <Compile Include="Response\Formato\GetFormatoResponseDTO.cs" />
+    <Compile Include="Response\LoginEmpresa\GetLoginEmpresaResponseDTO.cs" />
+    <Compile Include="Response\LoginResponseDTO.cs" />
+    <Compile Include="Response\ModalidadPago\AddModalidadPagoResponseDTO.cs" />
+    <Compile Include="Response\ModalidadPago\EditModalidadPagoResponseDTO.cs" />
+    <Compile Include="Response\ModalidadPago\GetModalidadPagoResponseDTO.cs" />
+    <Compile Include="Response\Nivel\AddNivelResponseDTO.cs" />
+    <Compile Include="Response\Nivel\EditNivelResponseDTO.cs" />
+    <Compile Include="Response\Nivel\GetNivelResponseDTO.cs" />
+    <Compile Include="Response\Plan\AddPlanResponseDTO.cs" />
+    <Compile Include="Response\Plan\EditPlanResponseDTO.cs" />
+    <Compile Include="Response\Plan\GetPlanResponseDTO.cs" />
+    <Compile Include="Response\RazonSocial\GetRazonSocialResponseDTO.cs" />
+    <Compile Include="Response\SendPasswordResponseDTO.cs" />
+    <Compile Include="Response\TipoPago\AddTipoPagoResponseDTO.cs" />
+    <Compile Include="Response\TipoPago\EditTipoPagoResponseDTO.cs" />
+    <Compile Include="Response\TipoPago\GetClubResponseDTO.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

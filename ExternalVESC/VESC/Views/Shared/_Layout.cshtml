@@ -1,0 +1,63 @@
+﻿<!DOCTYPE html>
+
+<html lang="pt-br">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Mi aplicación ASP.NET</title>
+
+    @Scripts.Render("~/bundles/popper")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/bootstrap")
+
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/font-awesome")
+    @Scripts.Render("~/bundles/modernizr")
+
+    @Scripts.Render("~/bundles/angular")
+</head>
+<body>
+
+    <div id="menu">
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+            <a class="navbar-brand" href="#">Venta Planes Empresariales          </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Admon. Empleado
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="@Url.Action("Empleado", "Empleado")">Empleado</a>
+                            <a class="dropdown-item" href="@Url.Action("Dependiente", "Dependiente")">Dependiente</a>
+                        </div>
+                    </li>
+                </ul>
+                <form class="form-inline mt-2 mt-md-0">
+                    <span class="navbar-brand" id="usuario">Usuario</span>
+                    <span class="navbar-brand">      </span>
+                </form>
+            </div>
+        </nav>
+    </div>
+    <br />
+    <br />
+
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Venta Planes Empresariales</p>
+        </footer>
+    </div>
+
+
+
+@RenderSection("scripts", required: false)
+</body>
+</html>

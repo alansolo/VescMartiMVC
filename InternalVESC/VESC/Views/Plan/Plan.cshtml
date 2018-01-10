@@ -1,0 +1,161 @@
+﻿@{
+    ViewBag.Title = "Plan";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<head>
+    <script src="~/Scripts/Plan/Plan.js"></script>
+    <link href="~/Content/Plan/Plan.css" rel="stylesheet" />
+
+</head>
+
+<div class="header clearfix">
+    <h2 class="text-muted">Plan Empresarial</h2>
+</div>
+<hr />
+<br />
+
+<div ng-app="MyApp" ng-controller="MyController">
+
+    <div id="divAgregarEmpresa">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" ng-click="TituloAddPlan()">
+            <i class="fa fa-plus fa-lg" aria-hidden="true"></i> Agregar
+        </button>
+    </div>
+
+    <br />
+
+    <div id="divTablaPlan">
+        <table class="table table-striped">
+            <thead style="background-color:black;color:white;">
+                <tr>
+                    <th class="d-none">IdPlan</th>
+                    <th>Plan</th>
+                    <th>Descripción</th>
+                    <th class="d-none">IdModalidadPago</th>
+                    <th>Modalidad Pago</th>
+                    <th>Editar</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="d in listaPlan">
+                    <td class="d-none"><input id="idPlan" type="hidden" value="{{d.idPlan}}" /></td>
+                    <td><h4><span id="plan" class="label">{{d.plan}}</span></h4></td>
+                    <td><h4><span id="descripcion" class="label">{{d.descripcion}}</span></h4></td>
+                    <td class="d-none"><input id="idTipoPago" type="hidden" value="{{d.idModalidadPago}}" /></td>
+                    <td><h4><span id="tipoPago" class="label">{{d.modalidadPago}}</span></h4></td>
+                    <td>
+                        <button id="editTabla" class="btn btn-primary" data-toggle="modal" data-target="#myModal" ng-click="TituloEditPlan(d)">
+                            <i class="fa fa-edit fa-lg" aria-hidden="true"></i>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <br />
+
+    <div class="form-group row">
+        <div class="col-md-6 div-centrar">
+            <button id="saveTotal" type="button" class="btn btn-primary">
+                <i class="fa fa-save fa-lg" aria-hidden="true"></i> Guardar
+            </button>
+        </div>
+        <div class="col-md-6 div-centrar">
+            <button id="cancelarTotal" type="button" class="btn btn-secondary" data-dismiss="modal">
+                <i class="fa fa-arrow-left fa-lg" aria-hidden="true"></i> Cancelar
+            </button>
+        </div>
+    </div>
+
+    <br />
+
+    @*Diseño del Modal*@
+    <div class="modal fade" id="myModal" tabindex="-1" role="document" data-keyboard="false" data-backdrop="static">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 id="modalTitle" class="modal-title titulo-modal">{{modalTitle}}</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    @*Formulario Base*@
+                    <form class="form-horizontal" id="signupForm" name="formulario" role="form" novalidate>
+                            <input type="hidden" value="{{plan.idPlan}}" />
+                            <div class="form-group row">
+                                <label class="col-form-label col-sm-3" for="plan">Plan:</label>
+                                <div class="col-sm-9">
+                                    <input type="text" ng-class="{'is-invalid': formulario.plan.$invalid}" ng-minlength="3" maxlength="45" class="form-control input-max" id="plan" name="plan" required ng-model="plan.plan" placeholder="Plan Empresarial">
+                                    <div ng-if="formulario.plan.$error.required" class="alert alert-danger">
+                                        * Campo Obligatorio
+                                    </div>
+                                    <div ng-if="formulario.plan.$error.minlength" class="alert alert-danger">
+                                        * Debe agregar mas de 2 caracteres
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-form-label col-sm-3" for="descripcion">Descripción:</label>
+                                <div class="col-sm-9">
+                                    <input type="text" ng-class="{'is-invalid': formulario.descripcion.$invalid}" ng-minlength="3" maxlength="75" class="form-control input-max" id="descripcion" name="descripcion" required ng-model="plan.descripcion" placeholder="Descripción del Plan">
+                                    <div ng-if="formulario.descripcion.$error.required" class="alert alert-danger">
+                                        * Campo Obligatorio
+                                    </div>
+                                    <div ng-if="formulario.descripcion.$error.minlength" class="alert alert-danger">
+                                        * Debe agregar mas de 2 caracteres
+                                    </div>
+                                </div>
+                            </div>
+                            <input type="hidden" value="{{plan.idModalidadPago}}" />
+                            <div class="form-group row">
+                                <label class="col-form-label col-sm-3" for="modalidadPago">Modalidad Pago:</label>
+                                <div class="col-sm-9">
+                                    <select id="modalidadPago" name="modalidadPago" ng-class="{'is-invalid': idModalidadPago<=0}" class="form-control" ng-options="mp.idModalidadPago as mp.modalidadPago for mp in listaModalidadPago" ng-model="plan.idModalidadPago">
+                                        <option value="">--Seleccione--</option>
+                                    </select>
+                                    <div ng-if="formulario.modalidadPago.$error.required" class="alert alert-danger">
+                                        * Campo Obligatorio
+                                    </div>
+                                </div>
+                            </div>
+                    </form>
+                </div>
+                <div class="modal-footer div-centrar">
+                    @*Div para editar empresas*@
+                    <div id="divEdit" ng-show=mostrarBotonesEdit>
+                        <div class="form-group row">
+                            <div class="col-md-6 div-centrar">
+                                <button ng-disabled="formulario.$invalid" id="saveModal" type="button" class="btn btn-primary" ng-click="EditPlan(plan)">
+                                    <i class="fa fa-save fa-lg" aria-hidden="true"></i> Guardar
+                                </button>
+                            </div>
+                            <div class="col-md-6 div-centrar">
+                                <button id="cancelarModal" type="button" class="btn btn-secondary" data-dismiss="modal">
+                                    <i class="fa fa-arrow-left fa-lg" aria-hidden="true"></i> Cancelar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    @*Div para guardar empresas*@
+                    <div id="divSave" ng-show=mostrarBotonesAdd>
+                        <div class="form-group row">
+                            <div class="col-md-6 div-centrar">
+                                <button ng-disabled="formulario.$invalid" id="saveModal" type="button" class="btn btn-primary" ng-click="AddPlan(plan)">
+                                    <i class="fa fa-save fa-lg" aria-hidden="true"></i> Guardar
+                                </button>
+                            </div>
+                            <div class="col-md-6 div-centrar">
+                                <button id="cancelarModal" type="button" class="btn btn-secondary" data-dismiss="modal">
+                                    <i class="fa fa-arrow-left fa-lg" aria-hidden="true"></i> Cancelar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

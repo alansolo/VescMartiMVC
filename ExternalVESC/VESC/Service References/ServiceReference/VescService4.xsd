@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/VESCServices.ENT.Entities" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/VESCServices.ENT.Entities" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:4063/VescService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/VESCServices.ENT.Common" />
+  <xs:complexType name="ArrayOfEmpleadoDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="EmpleadoDTO" nillable="true" type="tns:EmpleadoDTO" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfEmpleadoDTO" nillable="true" type="tns:ArrayOfEmpleadoDTO" />
+  <xs:complexType name="EmpleadoDTO">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q1="http://schemas.datacontract.org/2004/07/VESCServices.ENT.Common" base="q1:ResponseBaseDTO">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="apellidoM" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="apellidoP" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="calle" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="colonia" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="cp" type="xs:int" />
+          <xs:element minOccurs="0" name="curp" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="cusId" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="email" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="empresa" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="estado" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="estatus" type="xs:boolean" />
+          <xs:element minOccurs="0" name="fechaInsert" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="fechaNacimiento" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="fechaUpdate" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="genero" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="idClub" type="xs:int" />
+          <xs:element minOccurs="0" name="idEmpleado" type="xs:long" />
+          <xs:element minOccurs="0" name="idEmpleadoPadre" nillable="true" type="xs:long" />
+          <xs:element minOccurs="0" name="idEmpresa" type="xs:int" />
+          <xs:element minOccurs="0" name="idEmpresaInfFiscal" type="xs:int" />
+          <xs:element minOccurs="0" name="idPlan" type="xs:int" />
+          <xs:element minOccurs="0" name="idTipoPago" type="xs:int" />
+          <xs:element minOccurs="0" name="municipioDelegacion" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="nombre" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="numEmpleado" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="numExterior" type="xs:int" />
+          <xs:element minOccurs="0" name="numInterior" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="razonSocial" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="rfc" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="telefono" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="telefono2" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="usuarioInsert" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="usuarioUpdate" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="EmpleadoDTO" nillable="true" type="tns:EmpleadoDTO" />
+  <xs:complexType name="FiltroBusquedaEmpleadoDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="EmpleadoID" nillable="true" type="xs:long" />
+      <xs:element minOccurs="0" name="EmpleadoPadreID" nillable="true" type="xs:long" />
+      <xs:element minOccurs="0" name="EmpresaId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="Estatus" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="RazonSocialId" nillable="true" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="FiltroBusquedaEmpleadoDTO" nillable="true" type="tns:FiltroBusquedaEmpleadoDTO" />
+  <xs:complexType name="ArrayOfPadronDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="PadronDTO" nillable="true" type="tns:PadronDTO" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfPadronDTO" nillable="true" type="tns:ArrayOfPadronDTO" />
+  <xs:complexType name="PadronDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Club" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ESI" type="xs:decimal" />
+      <xs:element minOccurs="0" name="ET" type="xs:decimal" />
+      <xs:element minOccurs="0" name="Empleado" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="EmpleadoId" type="xs:int" />
+      <xs:element minOccurs="0" name="Estatus" type="xs:boolean" />
+      <xs:element minOccurs="0" name="EstatusDescripcion" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IC" type="xs:decimal" />
+      <xs:element minOccurs="0" name="ICSI" type="xs:decimal" />
+      <xs:element minOccurs="0" name="IE" type="xs:decimal" />
+      <xs:element minOccurs="0" name="IR" type="xs:decimal" />
+      <xs:element minOccurs="0" name="ITC" type="xs:decimal" />
+      <xs:element minOccurs="0" name="RSI" type="xs:decimal" />
+      <xs:element minOccurs="0" name="RT" type="xs:decimal" />
+      <xs:element minOccurs="0" name="RazonSocial" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Total" type="xs:decimal" />
+      <xs:element minOccurs="0" name="plan" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PadronDTO" nillable="true" type="tns:PadronDTO" />
+  <xs:complexType name="ArrayOfRazonSocialDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="RazonSocialDTO" nillable="true" type="tns:RazonSocialDTO" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfRazonSocialDTO" nillable="true" type="tns:ArrayOfRazonSocialDTO" />
+  <xs:complexType name="RazonSocialDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Empresa" nillable="true" type="tns:EmpresaDTO" />
+      <xs:element minOccurs="0" name="calle" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="colonia" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="cp" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="empresa1" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="estado" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="estatus" type="xs:boolean" />
+      <xs:element minOccurs="0" name="fechaInsert" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="fechaUpdate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="idEmpresa" type="xs:int" />
+      <xs:element minOccurs="0" name="idRazonSocial" type="xs:int" />
+      <xs:element minOccurs="0" name="municipioDelegacion" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="numeroExt" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="numeroInt" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="razonSocial" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="rfc" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="stringVigenciaFinal" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="stringVigenciaInicio" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="usuarioInsert" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="usuarioUpdate" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="vigenciaFinal" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="vigenciaInicio" type="xs:dateTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="RazonSocialDTO" nillable="true" type="tns:RazonSocialDTO" />
+  <xs:complexType name="EmpresaDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="apellidoMContacto" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="apellidoPContacto" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="correoContacto" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="empresa1" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="estatus" type="xs:boolean" />
+      <xs:element minOccurs="0" name="fechaInsert" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="fechaUpdate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="idEmpresa" type="xs:int" />
+      <xs:element minOccurs="0" name="idLogin" type="xs:int" />
+      <xs:element minOccurs="0" name="mensaje" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="nombreContacto" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="puestoContacto" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="telefono2Contacto" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="telefonoContacto" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="usuarioInsert" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="usuarioUpdate" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="EmpresaDTO" nillable="true" type="tns:EmpresaDTO" />
+</xs:schema>

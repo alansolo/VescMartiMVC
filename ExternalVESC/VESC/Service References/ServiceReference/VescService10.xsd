@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/VESCServices.ENT.Response.Account" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/VESCServices.ENT.Response.Account" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:4063/VescService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:import schemaLocation="http://localhost:4063/VescService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/VESCServices.ENT.Common" />
+  <xs:complexType name="LoginResponseDTO">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q1="http://schemas.datacontract.org/2004/07/VESCServices.ENT.Common" base="q1:ResponseBaseDTO">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="TokenSesion" type="ser:guid" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="LoginResponseDTO" nillable="true" type="tns:LoginResponseDTO" />
+  <xs:complexType name="LogoutResponseDTO">
+    <xs:sequence>
+      <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/VESCServices.ENT.Common" minOccurs="0" name="ErrorList" nillable="true" type="q2:ArrayOfErrorDTO" />
+      <xs:element minOccurs="0" name="Success" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="LogoutResponseDTO" nillable="true" type="tns:LogoutResponseDTO" />
+  <xs:complexType name="SendPasswordResponseDTO">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q3="http://schemas.datacontract.org/2004/07/VESCServices.ENT.Common" base="q3:ResponseBaseDTO">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="SendPasswordResponseDTO" nillable="true" type="tns:SendPasswordResponseDTO" />
+  <xs:complexType name="ChangePasswordResponseDTO">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q4="http://schemas.datacontract.org/2004/07/VESCServices.ENT.Common" base="q4:ResponseBaseDTO">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ChangePasswordResponseDTO" nillable="true" type="tns:ChangePasswordResponseDTO" />
+</xs:schema>

@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{CCB49F74-8DDF-4839-A1EC-6AC7A754B2EA}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>VESCServices.ENT</RootNamespace>
+    <AssemblyName>VESCServices.ENT</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Common\ErrorDTO.cs" />
+    <Compile Include="Common\RequestBaseDTO.cs" />
+    <Compile Include="Common\ResponseBaseDTO.cs" />
+    <Compile Include="Entities\CatPlanDTO.cs" />
+    <Compile Include="Entities\CatTipoPagoDTO.cs" />
+    <Compile Include="Entities\EmpleadoDTO.cs" />
+    <Compile Include="Entities\EmpresaDTO.cs" />
+    <Compile Include="Entities\FiltroBusquedaEmpleadoDTO.cs" />
+    <Compile Include="Entities\PadronDTO.cs" />
+    <Compile Include="Entities\RazonSocialDTO.cs" />
+    <Compile Include="Enums\ErrorCodeEnum.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Request\Account\ChangePasswordRequestDTO.cs" />
+    <Compile Include="Request\Account\LoginRequestDTO.cs" />
+    <Compile Include="Request\Account\LogoutRequestDTO.cs" />
+    <Compile Include="Request\Account\SendPasswordRequestDTO.cs" />
+    <Compile Include="Request\Dependiente\AltaDependienteRequestDTO.cs" />
+    <Compile Include="Request\Dependiente\BuscarDependienteRequestDTO.cs" />
+    <Compile Include="Request\Dependiente\EditDependienteRequestDTO.cs" />
+    <Compile Include="Request\Empleado\EditEmpleadoRequestDTO.cs" />
+    <Compile Include="Request\Empleado\AltaEmpleadoRequestDTO.cs" />
+    <Compile Include="Request\Empleado\BuscarEmpleadoRequestDTO.cs" />
+    <Compile Include="Request\Padron\ConsultaPadronRequestDTO.cs" />
+    <Compile Include="Request\RazonSocial\GetRazonSocialRequestDTO.cs" />
+    <Compile Include="Response\Account\ChangePasswordResponseDTO.cs" />
+    <Compile Include="Response\Account\LoginResponseDTO.cs" />
+    <Compile Include="Response\Account\LogoutResponseDTO.cs" />
+    <Compile Include="Response\Account\SendPasswordResponseDTO.cs" />
+    <Compile Include="Response\Dependiente\AltaDependienteResponseDTO.cs" />
+    <Compile Include="Response\Dependiente\BuscarDependienteResponseDTO.cs" />
+    <Compile Include="Response\Dependiente\EditDependienteResponseDTO.cs" />
+    <Compile Include="Response\Empleado\EditEmpleadoResponseDTO.cs" />
+    <Compile Include="Response\Empleado\AltaEmpleadoResponseDTO.cs" />
+    <Compile Include="Response\Empleado\BuscarEmpleadoResponseDTO.cs" />
+    <Compile Include="Response\Padron\ConsultaPadronResponseDTO.cs" />
+    <Compile Include="Response\RazonSocial\GetRazonSocialResponseDTO.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

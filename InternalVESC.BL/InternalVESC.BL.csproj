@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{172F2D68-88A1-4BD4-98C0-59F4E0155ECF}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>InternalVESC.BL</RootNamespace>
+    <AssemblyName>InternalVESC.BL</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AccountBL.cs" />
+    <Compile Include="ClubBL\ClubBL.cs" />
+    <Compile Include="EmpresaBL\EmpresaBL.cs" />
+    <Compile Include="FormatoBL\FormatoBL.cs" />
+    <Compile Include="Interfaces\ClubBL\IClubBL.cs" />
+    <Compile Include="Interfaces\EmpresaBL\IEmpresaBL.cs" />
+    <Compile Include="Interfaces\FormatoBL\IFormatoBL.cs" />
+    <Compile Include="Interfaces\IAccount.cs" />
+    <Compile Include="Interfaces\LoginEmpresaBL\ILoginEmpresaBL.cs" />
+    <Compile Include="Interfaces\ModalidadPago\IModalidadPagoBL.cs" />
+    <Compile Include="Interfaces\Nivel\INivelBL.cs" />
+    <Compile Include="Interfaces\Plan\IPlanBL.cs" />
+    <Compile Include="Interfaces\RazonSocial\IRazonSocialBL.cs" />
+    <Compile Include="LoginEmpresaBL\LoginEmpresaBL.cs" />
+    <Compile Include="ModalidadPagoBL\ModalidadPagoBL.cs" />
+    <Compile Include="Nivel\NivelBL.cs" />
+    <Compile Include="PlanBL\PlanBL.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RazonSocialBL\RazonSocialBL.cs" />
+    <Compile Include="Resource\VescMessages.Designer.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\InternalVESC.DAL\InternalVESC.DAL.csproj">
+      <Project>{74f3efba-42f7-45d9-a226-4691b3a9d9a5}</Project>
+      <Name>InternalVESC.DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\InternalVESC.ENT\InternalVESC.ENT.csproj">
+      <Project>{4cafd671-48b5-4031-bfc3-d1c73f60ec69}</Project>
+      <Name>InternalVESC.ENT</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resource\VescMessages.resx" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/VESCServices.ENT.Response.Empleado" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/VESCServices.ENT.Response.Empleado" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:4063/VescService.svc?xsd=xsd6" namespace="http://schemas.datacontract.org/2004/07/VESCServices.ENT.Entities" />
+  <xs:import schemaLocation="http://localhost:4063/VescService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/VESCServices.ENT.Common" />
+  <xs:complexType name="AltaEmpleadoResponseDTO">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q1="http://schemas.datacontract.org/2004/07/VESCServices.ENT.Common" base="q1:ResponseBaseDTO">
+        <xs:sequence>
+          <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/VESCServices.ENT.Entities" minOccurs="0" name="ListaEmpleado" nillable="true" type="q2:ArrayOfEmpleadoDTO" />
+          <xs:element minOccurs="0" name="Mensaje" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="AltaEmpleadoResponseDTO" nillable="true" type="tns:AltaEmpleadoResponseDTO" />
+  <xs:complexType name="EditEmpleadoResponseDTO">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q3="http://schemas.datacontract.org/2004/07/VESCServices.ENT.Common" base="q3:ResponseBaseDTO">
+        <xs:sequence>
+          <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/VESCServices.ENT.Entities" minOccurs="0" name="ListaEmpleado" nillable="true" type="q4:ArrayOfEmpleadoDTO" />
+          <xs:element minOccurs="0" name="Mensaje" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="EditEmpleadoResponseDTO" nillable="true" type="tns:EditEmpleadoResponseDTO" />
+  <xs:complexType name="BuscarEmpleadoResponseDTO">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q5="http://schemas.datacontract.org/2004/07/VESCServices.ENT.Common" base="q5:ResponseBaseDTO">
+        <xs:sequence>
+          <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/VESCServices.ENT.Entities" minOccurs="0" name="ListaEmpleado" nillable="true" type="q6:ArrayOfEmpleadoDTO" />
+          <xs:element minOccurs="0" name="Mensaje" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="BuscarEmpleadoResponseDTO" nillable="true" type="tns:BuscarEmpleadoResponseDTO" />
+</xs:schema>

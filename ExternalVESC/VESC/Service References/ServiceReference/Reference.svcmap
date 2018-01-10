@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="77a57fc9-2019-4511-a289-27e29a8fcfa3" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:4063/VescService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="VescService.xsd" MetadataType="Schema" ID="361d8480-7368-4b9f-ab11-f824dffb5afe" SourceId="1" SourceUrl="http://localhost:4063/VescService.svc?xsd=xsd3" />
+    <MetadataFile FileName="VescService1.xsd" MetadataType="Schema" ID="be778a1c-a8f1-4549-b87b-a25642f0eed8" SourceId="1" SourceUrl="http://localhost:4063/VescService.svc?xsd=xsd7" />
+    <MetadataFile FileName="VescService2.xsd" MetadataType="Schema" ID="4a40cae5-6c8b-468e-ac7e-1e67334050a8" SourceId="1" SourceUrl="http://localhost:4063/VescService.svc?xsd=xsd10" />
+    <MetadataFile FileName="VescService.wsdl" MetadataType="Wsdl" ID="9a693888-5c51-4f75-ac26-c88ddfa1ab34" SourceId="1" SourceUrl="http://localhost:4063/VescService.svc?wsdl" />
+    <MetadataFile FileName="VescService3.xsd" MetadataType="Schema" ID="b6e4f1b8-947f-4af6-ad7b-7202b9010013" SourceId="1" SourceUrl="http://localhost:4063/VescService.svc?xsd=xsd2" />
+    <MetadataFile FileName="VescService4.xsd" MetadataType="Schema" ID="bf73ae2e-3307-4f2c-b60d-bc20f46c4d38" SourceId="1" SourceUrl="http://localhost:4063/VescService.svc?xsd=xsd6" />
+    <MetadataFile FileName="VescService5.xsd" MetadataType="Schema" ID="bc22169e-c0c6-4d41-94c2-0b1885a141e5" SourceId="1" SourceUrl="http://localhost:4063/VescService.svc?xsd=xsd9" />
+    <MetadataFile FileName="VescService6.xsd" MetadataType="Schema" ID="40bf2312-dd3b-45eb-9fac-0c3b77f0f750" SourceId="1" SourceUrl="http://localhost:4063/VescService.svc?xsd=xsd1" />
+    <MetadataFile FileName="VescService7.xsd" MetadataType="Schema" ID="6497afa8-f731-4b52-822b-c371fbc551be" SourceId="1" SourceUrl="http://localhost:4063/VescService.svc?xsd=xsd5" />
+    <MetadataFile FileName="VescService8.xsd" MetadataType="Schema" ID="987b8395-0327-4860-8f48-e80bb8ef0e65" SourceId="1" SourceUrl="http://localhost:4063/VescService.svc?xsd=xsd0" />
+    <MetadataFile FileName="VescService9.xsd" MetadataType="Schema" ID="7deeb40d-850b-433b-b252-a7068e65b4a9" SourceId="1" SourceUrl="http://localhost:4063/VescService.svc?xsd=xsd8" />
+    <MetadataFile FileName="VescService.disco" MetadataType="Disco" ID="fcedf678-7bf4-45e3-8ddb-fa6c591e1247" SourceId="1" SourceUrl="http://localhost:4063/VescService.svc?disco" />
+    <MetadataFile FileName="VescService10.xsd" MetadataType="Schema" ID="e78f11fc-df0e-4eb1-953e-ef1d315a898a" SourceId="1" SourceUrl="http://localhost:4063/VescService.svc?xsd=xsd4" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>
