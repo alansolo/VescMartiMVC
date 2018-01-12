@@ -232,9 +232,6 @@ namespace VESC.Controllers
 
             ServiceReference.EditEmpleadoResponseDTO editEmpleadoResponse = new ServiceReference.EditEmpleadoResponseDTO();
 
-            editEmpleadoRequest.tokenSesion = (Guid)Session["TokenSesion"];
-            editEmpleadoRequest.ip = Session["ip"].ToString();
-
             editEmpleadoResponse = vescServicio.EditEmpleado(editEmpleadoRequest);
 
             if(!editEmpleadoResponse.Success)

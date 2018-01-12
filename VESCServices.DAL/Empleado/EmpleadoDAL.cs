@@ -17,6 +17,8 @@ namespace VESCServices.DAL.Empleado
         /// <returns>true si se guardo correctamente, false caso contrario</returns>
         public bool AltaEmpleado(EmpleadoDTO empleado)
         {
+            int resultado = 0;
+
             List<SqlParameter> listaParametros = new List<SqlParameter>();
             listaParametros.Add(new SqlParameter { ParameterName = "@idEmpresa", Value = empleado.idEmpresa });
             listaParametros.Add(new SqlParameter { ParameterName = "@idEmpresaInfFiscal", Value = empleado.idEmpresaInfFiscal });
@@ -47,11 +49,16 @@ namespace VESCServices.DAL.Empleado
             listaParametros.Add(new SqlParameter { ParameterName = "@idTipoPago", Value = empleado.idTipoPago });
             listaParametros.Add(new SqlParameter { ParameterName = "@estatus", Value = empleado.idTipoPago });
             listaParametros.Add(new SqlParameter { ParameterName = "@usuarioInsert", Value = empleado.usuarioInsert });
-            return (base.ExecuteNonQuery("sp_altaEmpleado", listaParametros) > 0);
+
+            resultado = base.ExecuteNonQuery("sp_altaEmpleado", listaParametros);
+
+            return (resultado != 0);
 
         }
         public bool EditEmpleado(EmpleadoDTO empleado)
         {
+            int resultado = 0;
+
             List<SqlParameter> listaParametros = new List<SqlParameter>();
             listaParametros.Add(new SqlParameter { ParameterName = "@idEmpresa", Value = empleado.idEmpresa });
             listaParametros.Add(new SqlParameter { ParameterName = "@idEmpresaInfFiscal", Value = empleado.idEmpresaInfFiscal });
@@ -82,7 +89,10 @@ namespace VESCServices.DAL.Empleado
             listaParametros.Add(new SqlParameter { ParameterName = "@idTipoPago", Value = empleado.idTipoPago });
             listaParametros.Add(new SqlParameter { ParameterName = "@estatus", Value = empleado.idTipoPago });
             listaParametros.Add(new SqlParameter { ParameterName = "@usuarioUpdate", Value = empleado.usuarioUpdate });
-            return (base.ExecuteNonQuery("sp_editEmpleado", listaParametros) > 0);
+
+            resultado = base.ExecuteNonQuery("sp_editEmpleado", listaParametros);
+
+            return (resultado != 0);
 
         }
         /// <summary>

@@ -21,7 +21,7 @@ namespace VESC.Controllers
             bool boolError = false;
             string strError = string.Empty;
 
-            List<ServiceReference.EmpleadoDTO> listaEmpleadosActual = new List<ServiceReference.EmpleadoDTO>();
+            List<ServiceReference.EmpleadoDTO> listaDependientesActual = new List<ServiceReference.EmpleadoDTO>();
 
             if (Session["TokenSesion"] == null || Session["ip"] == null || Session["user"] == null)
             {
@@ -29,7 +29,7 @@ namespace VESC.Controllers
                 boolError = true;
                 strError = "Debe iniciar sesion para poder ingresar a la pagina";
 
-                return Json(new { Session = boolSession, Resul = listaEmpleadosActual, Error = boolError, MensajeError = strError }, JsonRequestBehavior.AllowGet);
+                return Json(new { Session = boolSession, Resul = listaDependientesActual, Error = boolError, MensajeError = strError }, JsonRequestBehavior.AllowGet);
             }
 
             string user = Session["user"].ToString();
@@ -56,7 +56,7 @@ namespace VESC.Controllers
                 boolError = true;
                 strError = getRazonSocialResponse.Mensaje;
 
-                return Json(new { Session = boolSession, Resul = listaEmpleadosActual, Error = boolError, MensajeError = strError }, JsonRequestBehavior.AllowGet);
+                return Json(new { Session = boolSession, Resul = listaDependientesActual, Error = boolError, MensajeError = strError }, JsonRequestBehavior.AllowGet);
             }
 
             ServiceReference.BuscarEmpleadoRequestDTO buscarEmpleadoRequest = new ServiceReference.BuscarEmpleadoRequestDTO();
@@ -83,60 +83,60 @@ namespace VESC.Controllers
                 boolError = true;
                 strError = buscarEmpleadoResponse.Mensaje;
 
-                return Json(new { Session = boolSession, Resul = listaEmpleadosActual, Error = boolError, MensajeError = strError }, JsonRequestBehavior.AllowGet);
+                return Json(new { Session = boolSession, Resul = listaDependientesActual, Error = boolError, MensajeError = strError }, JsonRequestBehavior.AllowGet);
             }
 
-            List<ServiceReference.EmpleadoDTO> listaEmpleados = new List<ServiceReference.EmpleadoDTO>();
-            listaEmpleados = buscarEmpleadoResponse.ListaEmpleado.ToList();
+            List<ServiceReference.EmpleadoDTO> listaDependientes = new List<ServiceReference.EmpleadoDTO>();
+            listaDependientes = buscarEmpleadoResponse.ListaEmpleado.ToList();
 
             List<ServiceReference.RazonSocialDTO> listaRazonSocial = new List<ServiceReference.RazonSocialDTO>();
             listaRazonSocial = getRazonSocialResponse.ListaRazonSocial.ToList();
 
-            listaEmpleadosActual = (from empleado in listaEmpleados
-                                    join razonSocial in listaRazonSocial on empleado.idEmpresaInfFiscal equals razonSocial.idRazonSocial
-                                    where empleado.idEmpleadoPadre > 0
+            listaDependientesActual = (from dependiente in listaDependientes
+                                    join razonSocial in listaRazonSocial on dependiente.idEmpresaInfFiscal equals razonSocial.idRazonSocial
+                                    where dependiente.idEmpleadoPadre > 0
                                     select new ServiceReference.EmpleadoDTO
                                     {
-                                        apellidoM = empleado.apellidoM,
-                                        apellidoP = empleado.apellidoP,
-                                        calle = empleado.calle,
-                                        colonia = empleado.colonia,
-                                        cp = empleado.cp,
-                                        curp = empleado.curp,
-                                        cusId = empleado.cusId,
-                                        email = empleado.email,
-                                        empresa = empleado.empresa,
-                                        estado = empleado.estado,
-                                        fechaNacimiento = empleado.fechaNacimiento,
-                                        genero = empleado.genero,
-                                        idClub = empleado.idClub,
-                                        idEmpleado = empleado.idEmpleado,
-                                        idEmpleadoPadre = empleado.idEmpleadoPadre,
-                                        idEmpresa = empleado.idEmpresa,
-                                        idEmpresaInfFiscal = empleado.idEmpresaInfFiscal,
-                                        idPlan = empleado.idPlan,
-                                        idTipoPago = empleado.idTipoPago,
-                                        municipioDelegacion = empleado.municipioDelegacion,
-                                        nombre = empleado.nombre,
-                                        numEmpleado = empleado.numEmpleado,
-                                        numExterior = empleado.numExterior,
-                                        numInterior = empleado.numInterior,
+                                        apellidoM = dependiente.apellidoM,
+                                        apellidoP = dependiente.apellidoP,
+                                        calle = dependiente.calle,
+                                        colonia = dependiente.colonia,
+                                        cp = dependiente.cp,
+                                        curp = dependiente.curp,
+                                        cusId = dependiente.cusId,
+                                        email = dependiente.email,
+                                        empresa = dependiente.empresa,
+                                        estado = dependiente.estado,
+                                        fechaNacimiento = dependiente.fechaNacimiento,
+                                        genero = dependiente.genero,
+                                        idClub = dependiente.idClub,
+                                        idEmpleado = dependiente.idEmpleado,
+                                        idEmpleadoPadre = dependiente.idEmpleadoPadre,
+                                        idEmpresa = dependiente.idEmpresa,
+                                        idEmpresaInfFiscal = dependiente.idEmpresaInfFiscal,
+                                        idPlan = dependiente.idPlan,
+                                        idTipoPago = dependiente.idTipoPago,
+                                        municipioDelegacion = dependiente.municipioDelegacion,
+                                        nombre = dependiente.nombre,
+                                        numEmpleado = dependiente.numEmpleado,
+                                        numExterior = dependiente.numExterior,
+                                        numInterior = dependiente.numInterior,
                                         razonSocial = razonSocial.razonSocial,
-                                        rfc = empleado.rfc,
-                                        telefono = empleado.telefono,
-                                        telefono2 = empleado.telefono2,
-                                        estatus = empleado.estatus,
-                                        fechaInsert = empleado.fechaInsert,
-                                        usuarioInsert = empleado.usuarioInsert,
-                                        fechaUpdate = empleado.fechaUpdate,
-                                        usuarioUpdate = empleado.usuarioUpdate
+                                        rfc = dependiente.rfc,
+                                        telefono = dependiente.telefono,
+                                        telefono2 = dependiente.telefono2,
+                                        estatus = dependiente.estatus,
+                                        fechaInsert = dependiente.fechaInsert,
+                                        usuarioInsert = dependiente.usuarioInsert,
+                                        fechaUpdate = dependiente.fechaUpdate,
+                                        usuarioUpdate = dependiente.usuarioUpdate
                                     }).ToList();
 
 
 
-            return Json(new { Session = boolSession, Resul = listaEmpleadosActual, Error = boolError, MensajeError = strError }, JsonRequestBehavior.AllowGet);
+            return Json(new { Session = boolSession, Resul = listaDependientesActual, Error = boolError, MensajeError = strError }, JsonRequestBehavior.AllowGet);
         }
-        public JsonResult AddDependiente(ServiceReference.EmpleadoDTO empleado, List<ServiceReference.EmpleadoDTO> listaEmpleado)
+        public JsonResult AddDependiente(ServiceReference.EmpleadoDTO dependiente, List<ServiceReference.EmpleadoDTO> listaDependiente)
         {
             bool boolSession = true;
             bool boolError = false;
@@ -154,7 +154,7 @@ namespace VESC.Controllers
                 boolError = true;
                 strError = "Debe iniciar sesion para poder ingresar a la pagina";
 
-                return Json(new { Session = boolSession, Resul = listaEmpleado, Error = boolError, MensajeError = strError }, JsonRequestBehavior.AllowGet);
+                return Json(new { Session = boolSession, Resul = listaDependiente, Error = boolError, MensajeError = strError }, JsonRequestBehavior.AllowGet);
             }
 
             int idEmpresa = (int)Session["idEmpresa"];
@@ -163,42 +163,42 @@ namespace VESC.Controllers
 
             ServiceReference.VescServiceClient vescServicio = new ServiceReference.VescServiceClient();
 
-            ServiceReference.AltaEmpleadoRequestDTO altaEmpleadoRequest = new ServiceReference.AltaEmpleadoRequestDTO();
+            ServiceReference.AltaEmpleadoRequestDTO altaDependienteRequest = new ServiceReference.AltaEmpleadoRequestDTO();
 
-            List<ServiceReference.EmpleadoDTO> listaEmpleadoAlta = new List<ServiceReference.EmpleadoDTO>();
+            List<ServiceReference.EmpleadoDTO> listaDependienteAlta = new List<ServiceReference.EmpleadoDTO>();
 
-            empleado.idEmpresa = idEmpresa;
-            empleado.idEmpresaInfFiscal = idRazonSocial;
-            empleado.idEmpleadoPadre = idEmpleadoPadre;
-            empleado.idPlan = idPlan;
-            empleado.idClub = idClub;
-            empleado.idTipoPago = idTipoPago;
-            empleado.usuarioInsert = usuarioInsert;
+            dependiente.idEmpresa = idEmpresa;
+            dependiente.idEmpresaInfFiscal = idRazonSocial;
+            dependiente.idEmpleadoPadre = idEmpleadoPadre;
+            dependiente.idPlan = idPlan;
+            dependiente.idClub = idClub;
+            dependiente.idTipoPago = idTipoPago;
+            dependiente.usuarioInsert = usuarioInsert;
 
-            listaEmpleadoAlta.Add(empleado);
+            listaDependienteAlta.Add(dependiente);
 
-            altaEmpleadoRequest.ListaEmpleado = listaEmpleadoAlta.ToArray();
+            altaDependienteRequest.ListaEmpleado = listaDependienteAlta.ToArray();
 
-            altaEmpleadoRequest.tokenSesion = (Guid)Session["TokenSesion"];
-            altaEmpleadoRequest.ip = Session["ip"].ToString();
+            altaDependienteRequest.tokenSesion = (Guid)Session["TokenSesion"];
+            altaDependienteRequest.ip = Session["ip"].ToString();
 
-            ServiceReference.AltaEmpleadoResponseDTO altaEmpleadoResponse = new ServiceReference.AltaEmpleadoResponseDTO();
+            ServiceReference.AltaEmpleadoResponseDTO altaDependienteResponse = new ServiceReference.AltaEmpleadoResponseDTO();
 
-            altaEmpleadoResponse = vescServicio.AltaEmpleado(altaEmpleadoRequest);
+            altaDependienteResponse = vescServicio.AltaEmpleado(altaDependienteRequest);
 
-            if (altaEmpleadoResponse.Success)
+            if (altaDependienteResponse.Success)
             {
-                listaEmpleado.Add(empleado);
+                listaDependiente.Add(dependiente);
             }
             else
             {
                 boolError = true;
-                strError = altaEmpleadoResponse.Mensaje;
+                strError = altaDependienteResponse.Mensaje;
             }
 
-            return Json(new { Session = boolSession, Resul = listaEmpleado, Error = boolError, MensajeError = strError }, JsonRequestBehavior.AllowGet);
+            return Json(new { Session = boolSession, Resul = listaDependiente, Error = boolError, MensajeError = strError }, JsonRequestBehavior.AllowGet);
         }
-        public JsonResult EditDependiente(ServiceReference.EmpleadoDTO empleado, List<ServiceReference.EmpleadoDTO> listaEmpleado)
+        public JsonResult EditDependiente(ServiceReference.EmpleadoDTO dependiente, List<ServiceReference.EmpleadoDTO> listaDependiente)
         {
             bool boolSession = true;
             bool boolError = false;
@@ -212,37 +212,34 @@ namespace VESC.Controllers
                 boolError = true;
                 strError = "Debe iniciar sesion para poder ingresar a la pagina";
 
-                return Json(new { Session = boolSession, Resul = listaEmpleado, Error = boolError, MensajeError = strError }, JsonRequestBehavior.AllowGet);
+                return Json(new { Session = boolSession, Resul = listaDependiente, Error = boolError, MensajeError = strError }, JsonRequestBehavior.AllowGet);
             }
 
             ServiceReference.VescServiceClient vescServicio = new ServiceReference.VescServiceClient();
-            ServiceReference.EditEmpleadoRequestDTO editEmpleadoRequest = new ServiceReference.EditEmpleadoRequestDTO();
+            ServiceReference.EditEmpleadoRequestDTO editDependienteRequest = new ServiceReference.EditEmpleadoRequestDTO();
 
-            List<ServiceReference.EmpleadoDTO> listaEmpleadoEdit = new List<ServiceReference.EmpleadoDTO>();
+            List<ServiceReference.EmpleadoDTO> listaDependienteEdit = new List<ServiceReference.EmpleadoDTO>();
 
-            empleado.usuarioUpdate = usuarioUpdate;
+            dependiente.usuarioUpdate = usuarioUpdate;
 
-            listaEmpleadoEdit.Add(empleado);
+            listaDependienteEdit.Add(dependiente);
 
-            editEmpleadoRequest.ListaEmpleado = listaEmpleadoEdit.ToArray();
+            editDependienteRequest.ListaEmpleado = listaDependienteEdit.ToArray();
 
-            editEmpleadoRequest.tokenSesion = (Guid)Session["TokenSesion"];
-            editEmpleadoRequest.ip = Session["ip"].ToString();
+            editDependienteRequest.tokenSesion = (Guid)Session["TokenSesion"];
+            editDependienteRequest.ip = Session["ip"].ToString();
 
-            ServiceReference.EditEmpleadoResponseDTO editEmpleadoResponse = new ServiceReference.EditEmpleadoResponseDTO();
+            ServiceReference.EditEmpleadoResponseDTO editDependienteResponse = new ServiceReference.EditEmpleadoResponseDTO();
 
-            editEmpleadoRequest.tokenSesion = (Guid)Session["TokenSesion"];
-            editEmpleadoRequest.ip = Session["ip"].ToString();
+            editDependienteResponse = vescServicio.EditEmpleado(editDependienteRequest);
 
-            editEmpleadoResponse = vescServicio.EditEmpleado(editEmpleadoRequest);
-
-            if (!editEmpleadoResponse.Success)
+            if (!editDependienteResponse.Success)
             {
                 boolError = true;
-                strError = editEmpleadoResponse.Mensaje;
+                strError = editDependienteResponse.Mensaje;
             }
 
-            return Json(new { Session = boolSession, Resul = listaEmpleado, Error = boolError, MensajeError = strError }, JsonRequestBehavior.AllowGet);
+            return Json(new { Session = boolSession, Resul = listaDependiente, Error = boolError, MensajeError = strError }, JsonRequestBehavior.AllowGet);
 
         }
 

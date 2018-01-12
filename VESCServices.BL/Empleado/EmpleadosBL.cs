@@ -47,15 +47,18 @@ namespace VESCServices.BL.Empleado
                 try
                 {
                     empleado.Success = (new EmpleadoDAL()).AltaEmpleado(empleado);
+                    response.Success = empleado.Success;
                 }
                 catch (EmpleadoException empleadoException)
                 {
                     empleado.Success = false;
+                    response.Success = false;
                     empleado.ErrorList = new List<ErrorDTO> { new ErrorDTO { Code = empleadoException.Code, Descripction = empleadoException.Message } };
                 }
                 catch (Exception ex)
                 {
                     empleado.Success = false;
+                    response.Success = false;
                     empleado.ErrorList = new List<ErrorDTO> { new ErrorDTO { Code = ErrorCodeEnum.DesconocidoLogin.ToString(), Descripction = VescMessages.ErrorDesconocido + ", " + ex.Message} };
                 }
 
@@ -75,6 +78,7 @@ namespace VESCServices.BL.Empleado
                 try
                 {
                     empleado.Success = (new EmpleadoDAL()).EditEmpleado(empleado);
+                    response.Success = empleado.Success;
                 }
                 catch (EmpleadoException empleadoException)
                 {
